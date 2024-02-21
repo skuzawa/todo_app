@@ -1,0 +1,54 @@
+@charset "UTF-8";
+
+* {
+	background-color: pink;
+}
+
+header {
+	font-size: 40px;
+	color: black
+}
+
+.container {
+	flex-wrap: wrap;
+	display: flex;
+	justify-content: left;
+	align-items: center;
+}
+
+.content {
+	margin: 20px;
+	width: 200px;
+	border-radius: 10%;
+	border: solid 2px white;
+	background-color: yellow;
+}
+
+.content p {
+	background-color: yellow;
+	display: flex;
+	justify-content: center;
+}
+
+.buttons {
+	flex-wrap: wrap;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.buttons button {
+	margin: 20px;
+	font-size: 20px;
+}
+
+.minion {
+	width: 50%;
+	height: 50%;
+	object-fit: cover;
+	display: flex;
+	justify-content: center;
+	position: relative;
+	left: 50px;
+}
+

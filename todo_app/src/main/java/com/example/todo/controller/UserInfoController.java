@@ -1,6 +1,7 @@
 package com.example.todo.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
@@ -19,9 +20,9 @@ public class UserInfoController {
 	 * 
 	 * @return display (html) which contains all the images
 	 */
-	@GetMapping
-	public String displayList() {
-		return "/index";
+	@GetMapping(value="/index")
+	public String displayList(Model model) {
+		return "/taskListDisplay";
 	}
 	
 }
