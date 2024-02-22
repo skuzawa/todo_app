@@ -35,7 +35,7 @@ public class TaskInfo implements Serializable{
     /**
      * コンテンツ
      */
-    private String content;
+    private String contents;
     
     /**
      * 画像
