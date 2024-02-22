@@ -7,37 +7,41 @@
 </head>
 <header>タスク管理アプリ</header>
 <body>
-	<div class="container">
+	<div class="container" th:if="${tasklist}">
+		<div th:each="task : ${tasklist}" th:object="${task}" class="align-middle">
 		<div class="content">
 			<p>Title</p><br>
+			<p th:text="*{title}"></p><br>
 			<p>Content</p>
+			<p th:text="*{contents}"></p><br>
 			<img class="minion" src="css/ミニオン1.jpeg">
 		</div>
-		<div class="content">
-			<p>Title</p><br>
-			<p>Content</p>
-			<img class="minion" src="css/ミニオン2.jpeg">
-		</div>
-		<div class="content">
-			<p>Title</p><br>
-			<p>Content</p>
-			<img class="minion" src="css/ミニオン1.jpeg">
-		</div>
-		<div class="content">
-			<p>Title</p><br>
-			<p>Content</p>
-			<img class="minion" src="css/ミニオン2.jpeg">
-		</div>
-		<div class="content">
-			<p>Title</p><br>
-			<p>Content</p>
-			<img class="minion" src="css/ミニオン2.jpeg">
-		</div>
-		<div class="content">
-			<p>Title</p><br>
-			<p>Content</p>
-			<img class="minion" src="css/ミニオン1.jpeg">
-		</div>
+<!--		</div>-->
+<!--		<div class="content">-->
+<!--			<p>Title</p><br>-->
+<!--			<p>Content</p>-->
+<!--			<img class="minion" src="css/ミニオン2.jpeg">-->
+<!--		</div>-->
+<!--		<div class="content">-->
+<!--			<p>Title</p><br>-->
+<!--			<p>Content</p>-->
+<!--			<img class="minion" src="css/ミニオン1.jpeg">-->
+<!--		</div>-->
+<!--		<div class="content">-->
+<!--			<p>Title</p><br>-->
+<!--			<p>Content</p>-->
+<!--			<img class="minion" src="css/ミニオン2.jpeg">-->
+<!--		</div>-->
+<!--		<div class="content">-->
+<!--			<p>Title</p><br>-->
+<!--			<p>Content</p>-->
+<!--			<img class="minion" src="css/ミニオン2.jpeg">-->
+<!--		</div>-->
+<!--		<div class="content">-->
+<!--			<p>Title</p><br>-->
+<!--			<p>Content</p>-->
+<!--			<img class="minion" src="css/ミニオン1.jpeg">-->
+<!--		</div>-->
 	</div>
 	<form class="buttons">
 		<button class="create_button">タスクの作成</button>
