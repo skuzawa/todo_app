@@ -43,6 +43,12 @@ public class TaskInfo implements Serializable{
     private Image img;
     
     /**
+     * @author kk
+     * Path of an image
+     */
+    private String imgPath;
+    
+    /**
      * 更新日時
      */
     private Date updateDate;
