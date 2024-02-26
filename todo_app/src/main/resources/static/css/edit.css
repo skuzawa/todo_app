@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+* {
+	background-color: pink;
+}
+
+.input_box {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.input_box form-control {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 20px;
+}
+
+.buttons {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 30px;
+	padding: 20px;
+}

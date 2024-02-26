@@ -1,26 +1,23 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html>
 <!--
 <head th:replace="common/head :: head_fragment(title = 'ユーザー情報編集', scripts = ~{::script}, links = ~{::link})"></head>
 -->
 <head>
 <meta charset="UTF-8">
 <title>Edit Task</title>
-<link rel="stylesheet" href="css/taskListDisplay.css"/>
+<link rel="stylesheet" th:href="@{/css/edit.css}"/>
 </head>
 <body>
 	<form th:action="@{/task/update}" th:object="${taskUpdateRequest}"
             th:method="post">
-	<div class="container" th:if="${taskUpdateRequest}">
-		<div th:each="task : ${taskUpdateRequest}" th:object="${task}" class="align-middle">
-		<div class="content">
-			<p>Title</p><br>
-			<p th:text="*{title}"></p><br>
-			<p>Content</p>
-			<p th:text="*{contents}"></p><br>
-			<img class="minion" src="css/ミニオン1.jpeg">
-		</div>
-		</div>
+	<div class="input_box">
+		<p>Input new title</p><br>
+		<input type="text" class="form-control" th:field="*{title}">
+		<p>Input new content</p><br>
+		<input type="text" class="form-control" th:field="*{contents}">
+		<p>Input new image path</p><br>
+		<input type="text" class="form-control" th:field="*{imgPath}">
 	</div>
 
 	<div class="buttons">
