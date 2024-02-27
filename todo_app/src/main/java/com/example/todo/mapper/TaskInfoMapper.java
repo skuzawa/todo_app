@@ -63,5 +63,12 @@ public interface TaskInfoMapper {
       * @param id 
       */
      void delete(int id);
+     
+     /**
+      * @author kk
+      * 
+      * Delete all tasks.
+      */
+     void deleteAll();
 	
 }

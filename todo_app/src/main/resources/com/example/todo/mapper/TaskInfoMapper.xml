@@ -24,6 +24,10 @@
     <delete id="delete">
     	DELETE FROM taskInfoTable WHERE id = #{id};
     </delete>
+    
+    <delete id="deleteAll">
+    	DELETE FROM taskInfoTable;
+    </delete>
 
 <!-- 新規登録 -->
     <insert id="save">
