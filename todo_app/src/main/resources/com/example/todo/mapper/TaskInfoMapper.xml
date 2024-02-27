@@ -21,4 +21,11 @@
     				imgpath = #{imgPath}, updatedAt = CURRENT_TIMESTAMP WHERE id = #{id};
     </update>
 
+<!-- 新規登録 -->
+    <insert id="save">
+        INSERT INTO taskInfoTable
+            (title,contents)
+        VALUES
+            (#{title}, #{contents})
+    </insert>
 </mapper>
