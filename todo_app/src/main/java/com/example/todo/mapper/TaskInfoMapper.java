@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.example.todo.dto.TaskAddRequest;
 import com.example.todo.entity.TaskInfo;
 
 /**
@@ -18,5 +19,10 @@ public interface TaskInfoMapper {
 	 */
 	List<TaskInfo> findAll();
 	
+	/**
+     * タスク情報登録
+     * @param userRequest 登録用リクエストデータ
+     */
+     void save(TaskAddRequest taskRequest);
 	
 }
