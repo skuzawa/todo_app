@@ -18,7 +18,7 @@
     
     <update id="updateTask">
     	UPDATE taskInfoTable SET title = #{title}, contents = #{contents}, 
-    				imgpath = #{imgpath}, update_date = CURRENT_TIMESTAMP WHERE id = #{id};
+    				imgpath = #{imgPath}, updatedAt = CURRENT_TIMESTAMP WHERE id = #{id};
     </update>
 
 </mapper>

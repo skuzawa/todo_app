@@ -58,6 +58,7 @@ public class TaskInfoController {
 	public String editTask(@PathVariable int id, Model model) {
 		TaskInfo task = taskInfoService.getTaskById(id);
 		TaskUpdateRequest newTask = new TaskUpdateRequest();
+		newTask.setId(task.getId());
 		newTask.setTitle(task.getTitle());
 		newTask.setContents(task.getContents());
 		newTask.setImgPath(task.getImgPath());
@@ -75,7 +76,8 @@ public class TaskInfoController {
 	@RequestMapping(value="/task/update", method=RequestMethod.POST)
 	public String updateTask(@Validated @ModelAttribute TaskUpdateRequest taskUpdateRequest, BindingResult result, Model model) {
 		taskInfoService.updateTask(taskUpdateRequest);
-		return "redirect:/taskListDisplay";
+		System.out.println("Updated completed");
+		return "redirect:/index";
 	}
 	
 }

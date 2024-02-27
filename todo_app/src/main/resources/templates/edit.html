@@ -11,6 +11,7 @@
 <body>
 	<form th:action="@{/task/update}" th:object="${taskUpdateRequest}"
             th:method="post">
+    <input type="hidden" th:field="*{id}" />
 	<div class="input_box">
 		<p>Input new title</p><br>
 		<input type="text" class="form-control" th:field="*{title}">
