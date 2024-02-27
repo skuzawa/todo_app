@@ -5,7 +5,7 @@
 <mapper namespace="com.example.todo.mapper.TaskInfoMapper">
     <!-- 全件検索 -->
     <select id="findAll" resultType="com.example.todo.entity.TaskInfo">
-        SELECT * FROM taskInfoTable;
+        SELECT * FROM taskInfoTable WHERE del_Flag=0;
     </select>
     
     <select id="getTaskById" resultType="com.example.todo.entity.TaskInfo">
@@ -22,7 +22,7 @@
     </update>
     
     <delete id="delete">
-    	DELETE FROM taskInfoTable WHERE id = #{id};
+    	UPDATE taskInfoTable SET updatedAt=CURRENT_TIMESTAMP, del_Flag=1 WHERE id=#{id};
     </delete>
     
     <delete id="deleteAll">
