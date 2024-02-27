@@ -7,6 +7,20 @@
     <select id="findAll" resultType="com.example.todo.entity.TaskInfo">
         SELECT * FROM taskInfoTable;
     </select>
+    
+    <select id="getTaskById" resultType="com.example.todo.entity.TaskInfo">
+    	SELECT * FROM taskInfoTable WHERE id=#{id};
+    </select>
+    
+    <select id="getTaskByUserId" resultType="com.example.todo.entity.TaskInfo">
+    	SELECT * FROM taskInfoTable WHERE user_id=#{user_id};
+    </select>
+    
+    <update id="updateTask">
+    	UPDATE taskInfoTable SET title = #{title}, contents = #{contents}, 
+    				imgpath = #{imgPath}, updatedAt = CURRENT_TIMESTAMP WHERE id = #{id};
+    </update>
+
 <!-- 新規登録 -->
     <insert id="save">
         INSERT INTO taskInfoTable
