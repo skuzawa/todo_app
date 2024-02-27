@@ -7,22 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import org.springframework.web.bind.annotation.PathVariable;
-
-
-import com.example.todo.dto.TaskUpdateRequest;
-
-
 import com.example.todo.dto.TaskAddRequest;
-
+import com.example.todo.dto.TaskUpdateRequest;
 import com.example.todo.entity.TaskInfo;
 import com.example.todo.service.TaskInfoService;
 
@@ -77,6 +71,25 @@ public class TaskInfoController {
 	
 	/**
 	 * @author kk
+	 * 
+	 * Delete a task.
+	 * 
+	 * @param id
+	 * @param model
+	 * @return return to the task display html
+	 */
+	@GetMapping(value="/task/{id}/delete")
+	public String delete(@PathVariable int id, Model model) {
+		System.out.println("Delete me!");
+		taskInfoService.delete(id);
+		return "redirect:/index";
+	}
+	
+	/**
+	 * @author kk
+	 * 
+	 * Update a task and its database.
+	 * 
 	 * @param taskUpdateRequest
 	 * @param result
 	 * @param model
@@ -86,11 +99,11 @@ public class TaskInfoController {
 	public String updateTask(@Validated @ModelAttribute TaskUpdateRequest taskUpdateRequest, BindingResult result, Model model) {
 		taskInfoService.updateTask(taskUpdateRequest);
 		System.out.println("Updated completed");
-		return "redirect:/index"; // Mapping と同一の転送先（42行目参考）
+		return "redirect:/index"; // Mapping と同一の転送先（45行目参考）
 	}
   
   
-	 /**
+	/**
      * タスク新規登録画面を表示
      * @param model Model
      * @return タスク情報一覧画面

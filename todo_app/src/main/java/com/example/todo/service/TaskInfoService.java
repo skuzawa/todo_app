@@ -5,11 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
-import com.example.todo.dto.TaskUpdateRequest;
-
 import com.example.todo.dto.TaskAddRequest;
-
+import com.example.todo.dto.TaskUpdateRequest;
 import com.example.todo.entity.TaskInfo;
 import com.example.todo.mapper.TaskInfoMapper;
 
@@ -25,7 +22,6 @@ public class TaskInfoService {
 	/**
      * ユーザー情報 Mapper
      */
-	/** ERROR HERE "@Autowired"*/
 	@Autowired
     private TaskInfoMapper taskInfoMapper;
 
@@ -38,7 +34,6 @@ public class TaskInfoService {
     }
     
     /**
-
      * @author kk
      * 
      * Get task by its id.
@@ -71,12 +66,22 @@ public class TaskInfoService {
      */
     public void updateTask(TaskUpdateRequest taskUpdateRequest) {
     	taskInfoMapper.updateTask(taskUpdateRequest);
+    }
       
-     /**
+    /**
      * タスク情報登録
      * @param taskAddRequest リクエストデータ
      */
     public void save(TaskAddRequest taskAddRequest) {
         taskInfoMapper.save(taskAddRequest);
+    }
+    
+    /**
+     * @author kk
+     * 
+     * Delete a task.
+     */
+    public void delete(int id) {
+    	taskInfoMapper.delete(id);
     }
 }

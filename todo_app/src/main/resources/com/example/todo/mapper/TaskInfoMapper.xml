@@ -20,6 +20,10 @@
     	UPDATE taskInfoTable SET title = #{title}, contents = #{contents}, 
     				imgpath = #{imgPath}, updatedAt = CURRENT_TIMESTAMP WHERE id = #{id};
     </update>
+    
+    <delete id="delete">
+    	DELETE FROM taskInfoTable WHERE id = #{id};
+    </delete>
 
 <!-- 新規登録 -->
     <insert id="save">

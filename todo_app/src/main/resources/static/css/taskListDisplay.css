@@ -30,6 +30,12 @@ header {
 	justify-content: center;
 }
 
+.content a {
+	background-color: transparent;
+	display: flex;
+	justify-content: center;
+}
+
 .buttons {
 	flex-wrap: wrap;
 	display: flex;
