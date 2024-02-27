@@ -77,7 +77,7 @@ public class TaskInfoController {
 	public String updateTask(@Validated @ModelAttribute TaskUpdateRequest taskUpdateRequest, BindingResult result, Model model) {
 		taskInfoService.updateTask(taskUpdateRequest);
 		System.out.println("Updated completed");
-		return "redirect:/index";
+		return "redirect:/index"; // Mapping と同一の転送先（42行目参考）
 	}
 	
 }
