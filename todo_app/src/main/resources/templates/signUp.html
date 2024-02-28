@@ -3,11 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	* {
+		background-color: pink;
+	}
+	
+	h1 {
+		text-align: center;
+	}
+	
+	input {
+		text-align: center;
+		border: 1px solid blue;
+	}
+	
+	.input_content {
+		text-align: center;
+		font-size: 25px;
+	}
+</style>
 </head>
 <body>
-	<h1>サインアップ</h1>
+	<div th:if="${passwordError}">
+    	<h1 th:text="${passwordError}"></h1>
+    </div>
+    <div th:unless="${passwordError}">
+		<h1>サインアップ</h1>
+	</div>
 		<form th:action="@{/top}" th:object="${userLoginRequest}" th:method="post">
-            <div>
+            <div class="input_content">
 				<label>ユーザーID</label>
 				<input type="text" name="user_id" ></input>
 				<label>パスワード</label>

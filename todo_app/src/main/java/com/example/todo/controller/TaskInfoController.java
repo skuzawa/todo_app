@@ -265,7 +265,6 @@ public class TaskInfoController {
     }
     
     /**
-<<<<<<< HEAD
      * ユーザーログイン情報新規登録
      * @author shunsukekuzawa
      * @param UserLoginRequest リクエストデータ
@@ -284,6 +283,15 @@ public class TaskInfoController {
             return "top";
         }
         // ユーザー情報の登録
+        // Check if password is entered correctly (edited by kk)
+        if (!userLoginRequest.getPassword().equals(userLoginRequest.getPasswordd())) {
+        	model.addAttribute("passwordError", "確認パスワードが違います。");
+        	return "/signUp";
+        }
+        if (userLoginRequest.getUser_id() == "" || userLoginRequest.getPassword() == "") {
+        	model.addAttribute("passwordError", "空白は受け付けれません。");
+        	return "/signUp";
+        }
         userInfoService.save(userLoginRequest);
         return "redirect:/top";
     }

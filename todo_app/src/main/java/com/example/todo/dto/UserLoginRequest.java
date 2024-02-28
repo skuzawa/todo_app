@@ -20,4 +20,11 @@ public class UserLoginRequest {
 	 * User's password
 	 */
 	private String password;
+	
+	/**
+	 * @author kk
+	 * 
+	 * Password for checking.
+	 */
+	private String passwordd;
 }
