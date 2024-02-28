@@ -49,6 +49,35 @@ public class TaskInfoController {
 		return "/taskListDisplay";
 	}
 	
+	/**
+	 * @author kuza
+	 * 
+	 * Welcome to todo_app.
+	 * 
+	 * @return display (html)top-page.
+	 * 
+	 */
+	@GetMapping(value="/top")
+	public String displayTop() {
+		return "/top";
+	}
+	
+	/**
+	 * @author kuza
+	 * 
+	 * input user-id and password.
+	 * 
+	 * @return display (html)signUp-page.
+	 * 
+	 */
+	@GetMapping(value="/signUp")
+	public String displaySignUp() {
+		return "/signUp";
+	}
+	
+	
+	
+	
   	/**
 	 * @author kk
 	 * 
