@@ -176,26 +176,27 @@ public class TaskInfoController {
 		String userInputPassword = loginRequest.getPassword();
 		UserInfo userInfo = userInfoService.getPassword(user_id);
 		if (userInfo == null) {
-			System.out.println("ファイルがありません!!");
-			return "redirect:/test";  // Unknown redirect.
+			model.addAttribute("label", "User does not exist.");
+			return "/login";  // Unknown redirect.
 		}
 		String expectedPassword  = userInfo.getPassword();
 		if (expectedPassword == null) {
-			System.out.println("ファイルがありません!!");
-			return "redirect:/test";  // Unknown redirect.
+			model.addAttribute("label", "Something went wrong.");
+			return "/login";  // Unknown redirect.
 		}
 		if (expectedPassword.equals(userInputPassword)) {
-			return "redirect:/index";
+			return "redirect:/index"; // Password is correct. 
 		}
+		model.addAttribute("label", "Wrong password!"); // Add label to html
 		return "/login";
 	}
 	
 	/**
 	 * Tmp function to direct to login menu
 	 * @param model
-	 * @return
+	 * @return login html
 	 */
-	@GetMapping(value="/test")
+	@GetMapping(value="/signIn")
 	public String goToLogin(Model model) {
 		return "/login";
 	}
