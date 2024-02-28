@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+*{
+	background-color: pink;
+}
+
+.top-items{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
