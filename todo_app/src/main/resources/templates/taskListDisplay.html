@@ -15,7 +15,7 @@
 			<p>Content</p>
 			<p th:text="*{contents}"></p><br>
 			<p th:text="*{imgPath}"></p><br>
-			<img class="minion" src=*{imgPath}> <!-- css/ミニオン1.jpeg -->
+			<img class="minion" th:src="*{imgPath}"> <!-- css/ミニオン1.jpeg -->
 			<a th:href="@{/task/{id}/edit(id=*{id})}" class="btn btn-primary">編集</a>
 			<a th:href="@{/task/{id}/delete(id=*{id})}" class="btn btn-primary">削除</a>
 		</div>
@@ -25,6 +25,7 @@
 	<form class="buttons">
 		<button class="create_button"><a href="/add">タスクの作成</a></button>
 		<button class="delete_button"><a href="/delete">全タスク削除</a></button>
+		<button class="logout_button"><a href="/logout">ログアウト</a></button>
 	</form>
 </footer>
 </html>

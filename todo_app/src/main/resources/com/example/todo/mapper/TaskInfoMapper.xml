@@ -26,7 +26,7 @@
     </delete>
     
     <delete id="deleteAll">
-    	DELETE FROM taskInfoTable;
+    	UPDATE taskInfoTable SET updatedAt=CURRENT_TIMESTAMP, del_Flag=1;
     </delete>
 
 <!-- 新規登録 -->

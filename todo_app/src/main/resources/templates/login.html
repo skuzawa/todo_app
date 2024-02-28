@@ -4,11 +4,32 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	* {
+		background-color: pink;
+	}
+	
+	.login {
+		display: flex;
+        flex-direction: column;
+    	align-items: center;
+	}
+	
+	input {
+		border: 1px solid blue;
+		margin-bottom: 10px;
+	}
+</style>
 </head>
 <body>
 	<!-- provided by chatGPT -->
-	<div>
-        <h2>Login</h2>
+	<div class="login">
+		<div th:if="${label}">
+        	<h2 th:text="${label}"></h2>
+        </div>
+        <div th:unless="${label}">
+			<h2>Login</h2>
+		</div>
         <form th:action="@{/login}" th:object="${loginRequest}" th:method="post">
             <input type="text" name="user_id" placeholder="Username" required><br><br>
             <input type="password" name="password" placeholder="Password" required><br><br>
