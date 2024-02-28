@@ -17,8 +17,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.todo.dto.TaskAddRequest;
 import com.example.todo.dto.TaskUpdateRequest;
+import com.example.todo.dto.UserLoginRequest;
 import com.example.todo.entity.TaskInfo;
+import com.example.todo.entity.UserInfo;
 import com.example.todo.service.TaskInfoService;
+import com.example.todo.service.UserInfoService;
 
 /**
  * 
@@ -35,6 +38,12 @@ public class TaskInfoController {
 	 */
 	@Autowired
 	private TaskInfoService taskInfoService;
+	
+	/**
+	 * User information service
+	 */
+	@Autowired
+	private UserInfoService userInfoService;
 	
 	/**
 	 * 
@@ -152,6 +161,43 @@ public class TaskInfoController {
         }
 		taskInfoService.updateTask(taskUpdateRequest);
 		return "redirect:/index"; // Mapping と同一の転送先（45行目参考）
+	}
+	
+	/**
+	 * @author kk
+	 * 
+	 * User login
+	 * 
+	 * @return go to index if login is successful, else go back to login himl
+	 */
+	@RequestMapping(value="/login", method=RequestMethod.POST)
+	public String login(@Validated @ModelAttribute UserLoginRequest loginRequest, BindingResult result, Model model) {
+		String user_id = loginRequest.getUser_id();
+		String userInputPassword = loginRequest.getPassword();
+		UserInfo userInfo = userInfoService.getPassword(user_id);
+		if (userInfo == null) {
+			System.out.println("ファイルがありません!!");
+			return "redirect:/test";  // Unknown redirect.
+		}
+		String expectedPassword  = userInfo.getPassword();
+		if (expectedPassword == null) {
+			System.out.println("ファイルがありません!!");
+			return "redirect:/test";  // Unknown redirect.
+		}
+		if (expectedPassword.equals(userInputPassword)) {
+			return "redirect:/index";
+		}
+		return "/login";
+	}
+	
+	/**
+	 * Tmp function to direct to login menu
+	 * @param model
+	 * @return
+	 */
+	@GetMapping(value="/test")
+	public String goToLogin(Model model) {
+		return "/login";
 	}
   
   

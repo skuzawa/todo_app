@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<!-- author kk -->
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<!-- provided by chatGPT -->
+	<div>
+        <h2>Login</h2>
+        <form th:action="@{/login}" th:object="${loginRequest}" th:method="post">
+            <input type="text" name="user_id" placeholder="Username" required><br><br>
+            <input type="password" name="password" placeholder="Password" required><br><br>
+            <input type="submit" value="Login">
+        </form>
+    </div>
+</body>
+</html>
