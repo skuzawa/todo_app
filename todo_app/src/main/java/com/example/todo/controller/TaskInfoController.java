@@ -23,6 +23,8 @@ import com.example.todo.entity.UserInfo;
 import com.example.todo.service.TaskInfoService;
 import com.example.todo.service.UserInfoService;
 
+import jakarta.servlet.http.HttpSession;
+
 /**
  * 
  * @author kk
@@ -52,7 +54,12 @@ public class TaskInfoController {
 	 * @return display (html) which contains all the images
 	 */
 	@GetMapping(value="/index")
-	public String displayList(Model model) {
+	public String displayList(Model model, HttpSession session) {
+		
+		if (session.getAttribute("userId") == null) {
+			return "redirect:/top";
+		}
+		System.out.println(session.getAttribute("userId"));
 		List<TaskInfo> taskList = taskInfoService.findAll();
 		model.addAttribute("tasklist", taskList);
 		return "/taskListDisplay";
@@ -84,9 +91,6 @@ public class TaskInfoController {
 		return "/signUp";
 	}
 	
-	
-	
-	
   	/**
 	 * @author kk
 	 * 
@@ -96,7 +100,10 @@ public class TaskInfoController {
 	 * @return edit html where user submits the new contents
 	 */
 	@GetMapping(value="/task/{id}/edit")
-	public String editTask(@PathVariable int id, Model model) {
+	public String editTask(@PathVariable int id, Model model, HttpSession session) {
+		if (session.getAttribute("userId") == null ) {
+			return "redirect:/top";
+		}
 		TaskInfo task = taskInfoService.getTaskById(id);
 		TaskUpdateRequest newTask = new TaskUpdateRequest();
 		newTask.setId(task.getId());
@@ -117,7 +124,10 @@ public class TaskInfoController {
 	 * @return return to the task display html
 	 */
 	@GetMapping(value="/task/{id}/delete")
-	public String delete(@PathVariable int id, Model model) {
+	public String delete(@PathVariable int id, Model model, HttpSession session) {
+		if (session.getAttribute("userId") == null ) {
+			return "redirect:/top";
+		}
 		System.out.println("Delete me!");
 		taskInfoService.delete(id);
 		return "redirect:/index";
@@ -132,7 +142,10 @@ public class TaskInfoController {
 	 * @return
 	 */
 	@GetMapping(value="/delete")
-	public String deleteAll(Model model) {
+	public String deleteAll(Model model, HttpSession session) {
+		if (session.getAttribute("userId") == null ) {
+			return "redirect:/top";
+		}
 		taskInfoService.deleteAll();
 		return "redirect:/index";
 	}
@@ -148,7 +161,11 @@ public class TaskInfoController {
 	 * @return if update is successful, then return to the list page
 	 */
 	@RequestMapping(value="/task/update", method=RequestMethod.POST)
-	public String updateTask(@Validated @ModelAttribute TaskUpdateRequest taskUpdateRequest, BindingResult result, Model model) {
+	public String updateTask(@Validated @ModelAttribute TaskUpdateRequest taskUpdateRequest, 
+									BindingResult result, Model model, HttpSession session) {
+		if (session.getAttribute("userId") == null ) {
+			return "redirect:/top";
+		}
 		// コピペいたしました
 		if (result.hasErrors()) {
             // 入力チェックエラーの場合
@@ -171,31 +188,34 @@ public class TaskInfoController {
 	 * @return go to index if login is successful, else go back to login himl
 	 */
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String login(@Validated @ModelAttribute UserLoginRequest loginRequest, BindingResult result, Model model) {
-		String user_id = loginRequest.getUser_id();
+	public String login(@Validated @ModelAttribute UserLoginRequest loginRequest, 
+			BindingResult result, Model model, HttpSession session) {
+		String userId = loginRequest.getUser_id();
 		String userInputPassword = loginRequest.getPassword();
-		UserInfo userInfo = userInfoService.getPassword(user_id);
+		UserInfo userInfo = userInfoService.getPassword(userId);
 		if (userInfo == null) {
-			System.out.println("ファイルがありません!!");
-			return "redirect:/test";  // Unknown redirect.
+			model.addAttribute("label", "User does not exist.");
+			return "/login";  // Unknown redirect.
 		}
 		String expectedPassword  = userInfo.getPassword();
 		if (expectedPassword == null) {
-			System.out.println("ファイルがありません!!");
-			return "redirect:/test";  // Unknown redirect.
+			model.addAttribute("label", "Something went wrong.");
+			return "/login";  // Unknown redirect.
 		}
 		if (expectedPassword.equals(userInputPassword)) {
-			return "redirect:/index";
+			session.setAttribute("userId", userId);
+			return "redirect:/index"; // Password is correct. 
 		}
+		model.addAttribute("label", "Wrong password!"); // Add label to html
 		return "/login";
 	}
 	
 	/**
 	 * Tmp function to direct to login menu
 	 * @param model
-	 * @return
+	 * @return login html
 	 */
-	@GetMapping(value="/test")
+	@GetMapping(value="/signIn")
 	public String goToLogin(Model model) {
 		return "/login";
 	}
@@ -207,7 +227,10 @@ public class TaskInfoController {
      * @return タスク情報一覧画面
      */
     @GetMapping(value = "/add")
-    public String displayAdd(Model model) {
+    public String displayAdd(Model model, HttpSession session) {
+    	if (session.getAttribute("userId") == null ) {
+			return "redirect:/top";
+		}
         model.addAttribute("taskAddRequest", new TaskAddRequest());
         return "/add";
     }
@@ -219,8 +242,12 @@ public class TaskInfoController {
      * @return タスク情報一覧画面
      */
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String create(@Validated @ModelAttribute TaskAddRequest taskRequest, BindingResult result, Model model) {
-        if (result.hasErrors()) {
+    public String create(@Validated @ModelAttribute TaskAddRequest taskRequest, 
+    						BindingResult result, Model model, HttpSession session) {
+    	if (session.getAttribute("userId") == null ) {
+			return "redirect:/top";
+		}
+    	if (result.hasErrors()) {
             // 入力チェックエラーの場合
             List<String> errorList = new ArrayList<String>();
             for (ObjectError error : result.getAllErrors()) {
@@ -233,4 +260,18 @@ public class TaskInfoController {
         taskInfoService.save(taskRequest);
         return "redirect:/index";
     }
+    
+    /**
+     * @author kk
+     * 
+     * Logout, invalidate session
+     * 
+     * @return
+     */
+    @GetMapping(value="/logout")
+    public String logout(Model model, HttpSession session) {
+    	session.invalidate();
+    	return "/top";
+    }
+    
 }

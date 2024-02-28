@@ -14,7 +14,7 @@ public class UserInfo implements Serializable{
 	/**
 	 * User ID
 	 */
-	private String user_id;
+	private String userId;
 	
 	/**
 	 * User's password
