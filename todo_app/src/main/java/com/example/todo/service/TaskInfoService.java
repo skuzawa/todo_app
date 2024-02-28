@@ -27,10 +27,12 @@ public class TaskInfoService {
 
     /**
      * ユーザー情報全件検索
+     * 
+     * @param user's id
      * @return 検索結果
      */
-    public List<TaskInfo> findAll() {
-        return taskInfoMapper.findAll();
+    public List<TaskInfo> findAll(String user_id) {
+        return taskInfoMapper.findAll(user_id);
     }
     
     /**

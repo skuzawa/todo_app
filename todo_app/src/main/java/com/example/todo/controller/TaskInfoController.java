@@ -60,7 +60,7 @@ public class TaskInfoController {
 			return "redirect:/top";
 		}
 		System.out.println(session.getAttribute("userId"));
-		List<TaskInfo> taskList = taskInfoService.findAll();
+		List<TaskInfo> taskList = taskInfoService.findAll((String) session.getAttribute("userId"));
 		model.addAttribute("tasklist", taskList);
 		return "/taskListDisplay";
 	}
@@ -260,6 +260,11 @@ public class TaskInfoController {
             return "index";
         }
         // ユーザー情報の登録
+    	String userId = (String) session.getAttribute("userId");
+    	taskRequest.setUser_id(userId);
+    	System.out.println(taskRequest.getContents());
+    	System.out.println(taskRequest.getTitle());
+    	System.out.println(taskRequest.getUser_id());
         taskInfoService.save(taskRequest);
         return "redirect:/index";
     }
@@ -292,7 +297,15 @@ public class TaskInfoController {
         	model.addAttribute("passwordError", "空白は受け付けれません。");
         	return "/signUp";
         }
-        userInfoService.save(userLoginRequest);
+        
+        // Check if ID is already used (edited by kk)
+        try {
+        	userInfoService.save(userLoginRequest);
+        } catch (Exception e) {
+        	model.addAttribute("passwordError", "このユーザーはすでに存在しています。");
+        	return "/signUp";
+        }
+        
         return "redirect:/top";
     }
     /*

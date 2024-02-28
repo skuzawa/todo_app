@@ -21,6 +21,10 @@
 		text-align: center;
 		font-size: 25px;
 	}
+	
+	a {
+		font-size: 10px;
+	}
 </style>
 </head>
 <body>
@@ -30,16 +34,17 @@
     <div th:unless="${passwordError}">
 		<h1>サインアップ</h1>
 	</div>
-		<form th:action="@{/top}" th:object="${userLoginRequest}" th:method="post">
-            <div class="input_content">
-				<label>ユーザーID</label>
-				<input type="text" name="user_id" ></input>
-				<label>パスワード</label>
-				<input type="password" name="password"></input>
-				<label>確認パスワード</label>
-				<input type="password" name="passwordd"></input>
-				<input type="submit" value="登録" class="btn btn-primary"></input>
-			</div>
-        </form>
+	<form th:action="@{/top}" th:object="${userLoginRequest}" th:method="post">
+        <div class="input_content">
+			<label>ユーザーID</label>
+			<input type="text" name="user_id" ></input>
+			<label>パスワード</label>
+			<input type="password" name="password"></input>
+			<label>確認パスワード</label>
+			<input type="password" name="passwordd"></input>
+			<input type="submit" value="登録" class="btn btn-primary"></input>
+			<a href="/top">キャンセル</a>
+		</div>
+    </form>
 </body>
 </html>

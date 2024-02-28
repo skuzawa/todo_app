@@ -22,4 +22,10 @@ public class TaskAddRequest implements Serializable {
      */
     @Size(max = 255, message = "内容は255桁以内で入力してください")
     private String contents;
+    
+    /**
+     * @author kk
+     */
+    private String user_id;
+    
 }
