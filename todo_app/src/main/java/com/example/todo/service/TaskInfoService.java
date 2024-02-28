@@ -84,4 +84,13 @@ public class TaskInfoService {
     public void delete(int id) {
     	taskInfoMapper.delete(id);
     }
+    
+    /**
+     * @author kk
+     * 
+     * Delete all tasks.
+     */
+    public void deleteAll() {
+    	taskInfoMapper.deleteAll();
+    }
 }

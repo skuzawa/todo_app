@@ -88,6 +88,20 @@ public class TaskInfoController {
 	/**
 	 * @author kk
 	 * 
+	 * Delete all tasks.
+	 * 
+	 * @param model
+	 * @return
+	 */
+	@GetMapping(value="/delete")
+	public String deleteAll(Model model) {
+		taskInfoService.deleteAll();
+		return "redirect:/index";
+	}
+	
+	/**
+	 * @author kk
+	 * 
 	 * Update a task and its database.
 	 * 
 	 * @param taskUpdateRequest
@@ -97,8 +111,17 @@ public class TaskInfoController {
 	 */
 	@RequestMapping(value="/task/update", method=RequestMethod.POST)
 	public String updateTask(@Validated @ModelAttribute TaskUpdateRequest taskUpdateRequest, BindingResult result, Model model) {
+		// コピペいたしました
+		if (result.hasErrors()) {
+            // 入力チェックエラーの場合
+            List<String> errorList = new ArrayList<String>();
+            for (ObjectError error : result.getAllErrors()) {
+                errorList.add(error.getDefaultMessage());
+            }
+            model.addAttribute("validationError", errorList);
+            return "index";
+        }
 		taskInfoService.updateTask(taskUpdateRequest);
-		System.out.println("Updated completed");
 		return "redirect:/index"; // Mapping と同一の転送先（45行目参考）
 	}
   
