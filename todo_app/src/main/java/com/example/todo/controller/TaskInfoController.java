@@ -59,7 +59,7 @@ public class TaskInfoController {
 	}
 	
 	/**
-	 * @author kuza
+	 * @author shunsukekuzawa
 	 * 
 	 * Welcome to todo_app.
 	 * 
@@ -72,7 +72,7 @@ public class TaskInfoController {
 	}
 	
 	/**
-	 * @author kuza
+	 * @author shunsukekuzawa
 	 * 
 	 * input user-id and password.
 	 * 
@@ -172,7 +172,7 @@ public class TaskInfoController {
 	 */
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String login(@Validated @ModelAttribute UserLoginRequest loginRequest, BindingResult result, Model model) {
-		String user_id = loginRequest.getUser_id();
+		String user_id = loginRequest.getUserId();
 		String userInputPassword = loginRequest.getPassword();
 		UserInfo userInfo = userInfoService.getPassword(user_id);
 		if (userInfo == null) {
@@ -214,6 +214,7 @@ public class TaskInfoController {
 	
 	/**
      * タスク新規登録
+     * @author shunsukekuzawa
      * @param taskRequest リクエストデータ
      * @param model Model
      * @return タスク情報一覧画面
@@ -232,5 +233,28 @@ public class TaskInfoController {
         // ユーザー情報の登録
         taskInfoService.save(taskRequest);
         return "redirect:/index";
+    }
+    
+    /**
+     * ユーザーログイン情報新規登録
+     * @author shunsukekuzawa
+     * @param UserLoginRequest リクエストデータ
+     * @param model Model
+     * @return トップ画面
+     */
+    @RequestMapping(value = "/top", method = RequestMethod.POST)
+    public String saveUserLogin(@Validated @ModelAttribute UserLoginRequest userLoginRequest, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            // 入力チェックエラーの場合
+            List<String> errorList = new ArrayList<String>();
+            for (ObjectError error : result.getAllErrors()) {
+                errorList.add(error.getDefaultMessage());
+            }
+            model.addAttribute("validationError", errorList);
+            return "top";
+        }
+        // ユーザー情報の登録
+        userInfoService.save(userLoginRequest);
+        return "redirect:/top";
     }
 }

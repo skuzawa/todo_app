@@ -6,10 +6,16 @@
 </head>
 <body>
 	<h1>サインアップ</h1>
-		<div>
-			<input type="text" name="user_id" value="ユーザーID"></input>
-			<input type="password" name="password" value="パスワード"></input>
-			<button><a th:href="@{/top}">登録</a></button>
-		</div>
+		<form th:action="@{/top}" th:object="${userLoginRequest}" th:method="post">
+            <div>
+				<label>ユーザーID</label>
+				<input type="text" name="user_id" ></input>
+				<label>パスワード</label>
+				<input type="password" name="password"></input>
+				<label>確認パスワード</label>
+				<input type="password" name="password"></input>
+				<input type="submit" value="登録" class="btn btn-primary"></input>
+			</div>
+        </form>
 </body>
 </html>

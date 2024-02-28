@@ -8,5 +8,12 @@
     <select id="getPassword" resultType="com.example.todo.entity.UserInfo">
     	SELECT password FROM userInfoTable WHERE user_id=#{user_id};
     </select>
+    
+    <insert id="save">
+    	INSERT INTO usrInfoTable
+            (user_id,password)
+        VALUES
+            (#{user_id}, #{password})
+    </insert>
 
 </mapper>

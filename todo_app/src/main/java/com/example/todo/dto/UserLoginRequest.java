@@ -14,7 +14,7 @@ public class UserLoginRequest {
 	/**
 	 * User's id
 	 */
-	private String user_id;
+	private String userId;
 	
 	/**
 	 * User's password

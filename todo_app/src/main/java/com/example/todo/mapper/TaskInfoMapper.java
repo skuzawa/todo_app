@@ -51,7 +51,7 @@ public interface TaskInfoMapper {
      *
      *タスク情報登録
      *
-     * @param userRequest 登録用リクエストデータ
+     * @param taskRequest 登録用リクエストデータ
      */
      void save(TaskAddRequest taskRequest);
      
