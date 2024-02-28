@@ -158,7 +158,7 @@ public class TaskInfoController {
 		if (expectedPassword.equals(userInputPassword)) {
 			return "redirect:/index";
 		}
-		return "redirect:/login";
+		return "/login";
 	}
 	
 	/**
