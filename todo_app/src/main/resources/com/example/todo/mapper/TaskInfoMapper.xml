@@ -5,7 +5,7 @@
 <mapper namespace="com.example.todo.mapper.TaskInfoMapper">
     <!-- 全件検索 -->
     <select id="findAll" resultType="com.example.todo.entity.TaskInfo">
-        SELECT * FROM taskInfoTable WHERE del_Flag=0;
+        SELECT * FROM taskInfoTable WHERE del_Flag=0 AND user_id=#{user_id};
     </select>
     
     <select id="getTaskById" resultType="com.example.todo.entity.TaskInfo">
@@ -32,8 +32,8 @@
 <!-- 新規登録 -->
     <insert id="save">
         INSERT INTO taskInfoTable
-            (title,contents)
+            (title, contents, user_id)
         VALUES
-            (#{title}, #{contents})
+            (#{title}, #{contents}, #{user_id})
     </insert>
 </mapper>
