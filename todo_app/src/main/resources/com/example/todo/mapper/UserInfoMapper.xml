@@ -10,7 +10,7 @@
     </select>
     
     <insert id="save">
-    	INSERT INTO usrInfoTable
+    	INSERT INTO userInfoTable
             (user_id,password)
         VALUES
             (#{user_id}, #{password})

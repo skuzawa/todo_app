@@ -20,7 +20,7 @@ public class TaskInfo implements Serializable{
     /**
      * ユーザーID
      */
-    private Long userId;
+    private String userId;
 
     /**
      * 名前

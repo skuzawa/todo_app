@@ -16,9 +16,11 @@ public interface TaskInfoMapper {
 
 	/**
 	 * Find all the existing elements from database.
+	 * 
+	 * @param user's id
 	 * @return TaskInfo
 	 */
-	List<TaskInfo> findAll();
+	List<TaskInfo> findAll(String user_id);
 	
 	/**
 	 * @author kk
