@@ -2,6 +2,8 @@ package com.example.todo.dto;
 
 import java.io.Serializable;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
@@ -27,5 +29,14 @@ public class TaskAddRequest implements Serializable {
      * @author kk
      */
     private String user_id;
+    
+    
+    //画像
+    private MultipartFile multipartFile;
+    
+    private String imgpath;
+    
+    public String getImgPath() { return imgpath; }
+    public void setImgPath(String newImgPath) { imgpath = newImgPath; }
     
 }

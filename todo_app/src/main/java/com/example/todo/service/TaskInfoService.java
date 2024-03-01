@@ -95,4 +95,5 @@ public class TaskInfoService {
     public void deleteAll() {
     	taskInfoMapper.deleteAll();
     }
+    
 }

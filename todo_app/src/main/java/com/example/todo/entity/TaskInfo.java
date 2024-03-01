@@ -62,4 +62,5 @@ public class TaskInfo implements Serializable{
      * 削除日時
      */
     private Date deleteDate;
+   
 }

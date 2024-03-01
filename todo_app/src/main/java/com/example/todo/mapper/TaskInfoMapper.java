@@ -72,5 +72,6 @@ public interface TaskInfoMapper {
       * Delete all tasks.
       */
      void deleteAll();
+     
 	
 }
