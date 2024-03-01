@@ -32,8 +32,8 @@
 <!-- 新規登録 -->
     <insert id="save">
         INSERT INTO taskInfoTable
-            (title, contents, user_id)
+            (title, contents, user_id, imgpath)
         VALUES
-            (#{title}, #{contents}, #{user_id})
+            (#{title}, #{contents}, #{user_id}, #{imgpath})
     </insert>
 </mapper>

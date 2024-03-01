@@ -10,6 +10,7 @@
     </select>
     
     <insert id="save">
+    	
     	INSERT INTO userInfoTable
             (user_id,password)
         VALUES
