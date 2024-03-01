@@ -278,6 +278,7 @@ public class TaskInfoController {
     	
         // ユーザー情報の登録
     	String userId = (String) session.getAttribute("userId");
+    	taskRequest.setUser_id(userId);
     
     	System.out.println(taskRequest.getContents());
     	System.out.println(taskRequest.getTitle());
@@ -310,7 +311,7 @@ public class TaskInfoController {
             e.printStackTrace();
         }
         String path = filePath.toString();
-        return path;
+        return "/upload_img/"+fileName;
     }
     
 
