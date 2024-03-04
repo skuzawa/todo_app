@@ -10,9 +10,9 @@
 	<div class="container" th:if="${tasklist}">
 		<div th:each="task : ${tasklist}" th:object="${task}" class="align-middle">
 		<div class="content">
-			<p>Title</p><br>
+			<p class="titleName">タイトル</p><br>
 			<p th:text="*{title}"></p><br>
-			<p>Content</p>
+			<p class="contentName">内容</p>
 			<p th:text="*{contents}"></p><br>
 			<img th:src="*{imgPath}" class="taskImage">
 			<a th:href="@{/task/{id}/edit(id=*{id})}" class="btn btn-primary">編集</a>
