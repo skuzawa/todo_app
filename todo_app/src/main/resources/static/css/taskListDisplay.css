@@ -23,9 +23,9 @@ footer {
 }
 
 .content {
-	margin: 20px;
-	width: 200px;
-	border-radius: 10%;
+	margin: 30px;
+	width: 240px;
+	border-radius: 0%;
 	border: solid 2px white;
 	background-color: yellow;
 }
@@ -54,6 +54,16 @@ footer {
 	font-size: 20px;
 }
 
+.content img{
+	width: 220px;
+	height:200px;
+	display: flex;
+	margin:10px;
+	justify-content: center;
+	object-fit: cover;
+	background-color: white;
+}
+
 .minion {
 	width: 100px;
 	height: 100px;
@@ -63,4 +73,10 @@ footer {
 	position: relative;
 	left: 50px;
 }
+
+.titleName, .contentName{
+	font-size: 20px;
+	font-weight: bold;
+}
+
 

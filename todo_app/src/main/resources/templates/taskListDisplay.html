@@ -10,13 +10,11 @@
 	<div class="container" th:if="${tasklist}">
 		<div th:each="task : ${tasklist}" th:object="${task}" class="align-middle">
 		<div class="content">
-			<p>Title</p><br>
+			<p class="titleName">タイトル</p><br>
 			<p th:text="*{title}"></p><br>
-			<p>Content</p>
+			<p class="contentName">内容</p>
 			<p th:text="*{contents}"></p><br>
-			<!--<p th:text="*{imgPath}"></p><br>-->
-			<img class="minion" th:src="*{imgPath}">
-			<!--<img class="minion" th:src="*{imgPath}">  css/ミニオン1.jpeg -->
+			<img th:src="*{imgPath}" class="taskImage">
 			<a th:href="@{/task/{id}/edit(id=*{id})}" class="btn btn-primary">編集</a>
 			<a th:href="@{/task/{id}/delete(id=*{id})}" class="btn btn-primary">削除</a>
 		</div>
