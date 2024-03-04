@@ -9,11 +9,17 @@ header {
 	color: black
 }
 
+footer {
+	position: fixed;
+	bottom: 0;
+}
+
 .container {
 	flex-wrap: wrap;
 	display: flex;
 	justify-content: left;
 	align-items: center;
+	padding-bottom: 60px; /* Height of the footer */
 }
 
 .content {
@@ -49,8 +55,8 @@ header {
 }
 
 .minion {
-	width: 50%;
-	height: 50%;
+	width: 100px;
+	height: 100px;
 	object-fit: cover;
 	display: flex;
 	justify-content: center;

@@ -66,7 +66,6 @@ public class TaskInfoController {
 		if (session.getAttribute("userId") == null) {
 			return "redirect:/top";
 		}
-		System.out.println(session.getAttribute("userId"));
 		List<TaskInfo> taskList = taskInfoService.findAll((String) session.getAttribute("userId"));
 		model.addAttribute("tasklist", taskList);
 		return "/taskListDisplay";
@@ -118,6 +117,7 @@ public class TaskInfoController {
 		newTask.setContents(task.getContents());
 		newTask.setImgPath(task.getImgPath());
 		model.addAttribute("taskUpdateRequest", newTask);
+		model.addAttribute("uploadForm", new UploadForm()); // Use to upload the picture
 		return "/edit";
 	}
 	
@@ -135,7 +135,6 @@ public class TaskInfoController {
 		if (session.getAttribute("userId") == null ) {
 			return "redirect:/top";
 		}
-		System.out.println("Delete me!");
 		taskInfoService.delete(id);
 		return "redirect:/index";
 	}
@@ -169,7 +168,7 @@ public class TaskInfoController {
 	 */
 	@RequestMapping(value="/task/update", method=RequestMethod.POST)
 	public String updateTask(@Validated @ModelAttribute TaskUpdateRequest taskUpdateRequest, 
-									BindingResult result, Model model, HttpSession session) {
+									BindingResult result, Model model, HttpSession session, UploadForm uploadForm) {
 		if (session.getAttribute("userId") == null ) {
 			return "redirect:/top";
 		}
@@ -183,6 +182,14 @@ public class TaskInfoController {
             model.addAttribute("validationError", errorList);
             return "index";
         }
+		
+		// Update new picture (written by Kuzawa)
+    	List<MultipartFile> multipartFile = uploadForm.getMultipartFile();
+   	 	multipartFile.forEach(e -> {
+            //アップロード実行処理メソッド呼び出し
+   	 		taskUpdateRequest.setImgPath(uploadAction(e));
+        });
+   	 	
 		taskInfoService.updateTask(taskUpdateRequest);
 		return "redirect:/index"; // Mapping と同一の転送先（45行目参考）
 	}
@@ -195,7 +202,6 @@ public class TaskInfoController {
 	 * @return go to index if login is successful, else go back to login himl
 	 */
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-
 	public String login(@Validated @ModelAttribute UserLoginRequest loginRequest, 
 			BindingResult result, Model model, HttpSession session) {
 		String userId = loginRequest.getUser_id();
@@ -273,16 +279,10 @@ public class TaskInfoController {
              //アップロード実行処理メソッド呼び出し
              taskRequest.setImgPath(uploadAction(e));
          });
-
-    	System.out.println(taskRequest.getImgPath());
     	
         // ユーザー情報の登録
     	String userId = (String) session.getAttribute("userId");
     	taskRequest.setUser_id(userId);
-    
-    	System.out.println(taskRequest.getContents());
-    	System.out.println(taskRequest.getTitle());
-    	System.out.println(taskRequest.getUser_id());
     	
         taskInfoService.save(taskRequest);
         return "redirect:/index";
