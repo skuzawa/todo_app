@@ -9,11 +9,17 @@ header {
 	color: black
 }
 
+footer {
+	position: fixed;
+	bottom: 0;
+}
+
 .container {
 	flex-wrap: wrap;
 	display: flex;
 	justify-content: left;
 	align-items: center;
+	padding-bottom: 60px; /* Height of the footer */
 }
 
 .content {
