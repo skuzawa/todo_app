@@ -12,18 +12,19 @@
             <label class="text-danger" th:text="${error}"></label>
         </div>
         <h1>タスク新規登録</h1>
-        <form th:action="@{/add}" enctype="multipart/form-data" th:object="${taskAddRequest}" th:method="post">
+        <div class="inputArea">
+			<form th:action="@{/add}" enctype="multipart/form-data" th:object="${taskAddRequest}" th:method="post">
             <div class="form-group">
-                <label>タスク名：<span class="text-danger">※</span></label>
-                <input type="text" th:field="*{title}" class="form-control">
+                <label>タスク名</label>
+                <input type="text" th:field="*{title}" class="taskName" required="required">
             </div>
             <div class="form-group">
-                <label>内容：<span class="text-danger">※</span></label>
-                <input type="text" th:field="*{contents}" class="form-control">
+                <label>内容</label>
+                <input type="text" th:field="*{contents}" class="contentName" required="required">
             </div>
             <div>
-				<label for="imageFile">＜画像＞</label>
-				<p><input type="file" th:field="*{multipartFile}" multiple></p>
+				<label for="imageFile">画像</label>
+				<input type="file" th:field="*{multipartFile}" multiple class="imgBox"　required="required">
 			</div>
             <br />
             <div class="text-center">
@@ -31,6 +32,8 @@
                 <a href="/index" class="btn btn-secondary">キャンセル</a>
             </div>
         </form>
+		</div>
+        
     </div>
 </body>
 </html>

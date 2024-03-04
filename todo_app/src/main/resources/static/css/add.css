@@ -2,3 +2,33 @@
 * {
 	background-color: pink;
 }
+
+h1{
+	text-align: center;
+}
+
+.inputArea{
+	display: flex;
+	justify-content: center;
+	align-content: center;
+}
+
+
+.taskName{
+	width: 240px;
+	margin:20px;
+}
+.contentName{
+	margin:20px;
+	width: 240px;
+	height: 120px;
+	position: relative;
+	left:30px;
+	
+}
+
+.imgBox{
+	margin:20px;
+	position: relative;
+	left:30px;
+}
