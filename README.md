@@ -2,7 +2,7 @@
 
 このミニチーム開発では、JavaのフレームワークであるSpringBootを使ってtodo アプリを作り、Web上でCRUDの機能を実装します。
 
-<Strong>目的</Strong>：チーム開発に慣れる
+<Strong>目的</Strong>：チーム開発に慣れる<br>
 <Strong>目標</Strong>：必須要件の機能を組み込む
 
 <Strong>必須機能一覧</Strong>：<br>
