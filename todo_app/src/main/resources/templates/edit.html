@@ -9,16 +9,16 @@
 <link rel="stylesheet" th:href="@{/css/edit.css}"/>
 </head>
 <body>
-	<form th:action="@{/task/update}" th:object="${taskUpdateRequest}"
+	<form th:action="@{/task/update}" enctype="multipart/form-data" th:object="${taskUpdateRequest}"
             th:method="post">
     <input type="hidden" th:field="*{id}" />
 	<div class="input_box">
-		<p>Input new title</p><br>
+		<p>新しいタイトルを入れてください</p><br>
 		<input type="text" class="form-control" th:field="*{title}">
-		<p>Input new content</p><br>
-		<input type="text" class="form-control" th:field="*{contents}">
-		<p>Input new image path</p><br>
-		<input type="text" class="form-control" th:field="*{imgPath}">
+		<p>新しいコンテンツを入れてください</p><br>
+		<input type="text" class="form-control" th:field="*{contents}"><br><br>
+		<label for="imageFile">新しい画像を選択してください</label>
+		<p><input type="file" th:field="*{multipartFile}" multiple></p>
 	</div>
 
 	<div class="buttons">
